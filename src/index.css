@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app {
+  @apply h-screen bg-slate-950 text-white p-5;
+}
+
+.searchSection {
+  @apply flex flex-col md:flex-row items-center gap-5 justify-start md:justify-center mt-5;
+}
+
+.searchBar {
+  @apply w-full lg:w-auto rounded-lg p-2 focus:outline-none text-black font-semibold;
+}
+
+.searchBtn {
+  @apply rounded-lg bg-white text-slate-950 font-semibold px-6 py-2 hover:scale-110 transition ease-in-out duration-200;
+}
+
+.temperatureContainer {
+  @apply flex flex-col gap-5 items-center;
+}
+
+.temp {
+  @apply text-5xl font-bold;
+}
+
+.minorDetails {
+  @apply w-full md:w-1/2 lg:w-1/3 flex flex-row justify-between;
+}
+
+.detailValue {
+  @apply text-center;
+}
