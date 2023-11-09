@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .app {
-  @apply h-screen bg-slate-950 text-white p-5;
+  @apply h-screen bg-black text-white p-5;
 }
 
 .searchSection {
