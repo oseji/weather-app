@@ -39,7 +39,7 @@ function App() {
 
   const mapPin = (
     <svg
-      class="w-6 h-6 text-gray-800 dark:text-white"
+      className="w-6 h-6 text-gray-800 dark:text-white"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -47,9 +47,9 @@ function App() {
     >
       <g
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
       >
         <motion.path
           variants={pathVariants}
@@ -73,9 +73,7 @@ function App() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (e) => {
-            //console.log(e);
             setLocation([e.coords.latitude, e.coords.longitude]);
-            //setSearchVar(location);
 
             setApiLink(
               `https://api.weatherapi.com/v1/current.json?key=46fb6895d1de4ad9b14163630230911&q=${[
@@ -132,8 +130,8 @@ function App() {
       setIsLoading(false);
     } catch (error) {
       setError(error);
-      alert(error);
-
+      console.log(error);
+    } finally {
       setIsLoading(false);
     }
 
@@ -162,19 +160,24 @@ function App() {
           </div>
         </motion.div>
 
-        <motion.div
+        <motion.form
           initial={{ opacity: 0, x: -150 }}
           animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            setApiLink(
+              `https://api.weatherapi.com/v1/current.json?key=46fb6895d1de4ad9b14163630230911&q=${searchVar}&aqi=no`
+            );
+            fetchData();
+            setSearchVar("");
+          }}
           className="searchSection"
         >
           <input
             type="text"
             className="searchBar"
             value={searchVar}
-            onChange={(e) => {
-              setSearchVar(e.target.value);
-              //console.log(searchVar);
-            }}
+            onChange={(e) => setSearchVar(e.target.value)}
           />
 
           <button
@@ -189,7 +192,7 @@ function App() {
           >
             Search
           </button>
-        </motion.div>
+        </motion.form>
       </header>
 
       <main className="resultsContainer">
